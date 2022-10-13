@@ -3,7 +3,10 @@ import styles from './app.module.scss';
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 
 export function App() {
-  const [password, setPassword] = useState('123');
+  // TODO https://react-hook-form.com/get-started
+  // Notes: netestujes konkretne states ale len vystup komponenty. blackbox.
+
+  const [password, setPassword] = useState('abcabc');
   const [passwordRepeat, setPasswordRepeat] = useState('1234');
   const [formValidation, setFormValidation] = useState({minLength: false, minNumber: false, passwordMatch: false, formValid: false});
 
