@@ -1,0 +1,84 @@
+{
+  "name": "interval-timer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/interval-timer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/interval-timer",
+        "index": "apps/interval-timer/src/index.html",
+        "baseHref": "/",
+        "main": "apps/interval-timer/src/main.tsx",
+        "polyfills": "apps/interval-timer/src/polyfills.ts",
+        "tsConfig": "apps/interval-timer/tsconfig.app.json",
+        "assets": [
+          "apps/interval-timer/src/favicon.ico",
+          "apps/interval-timer/src/assets"
+        ],
+        "styles": ["apps/interval-timer/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/interval-timer/src/environments/environment.ts",
+              "with": "apps/interval-timer/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "interval-timer:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "interval-timer:build:development"
+        },
+        "production": {
+          "buildTarget": "interval-timer:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/interval-timer/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/interval-timer"],
+      "options": {
+        "jestConfig": "apps/interval-timer/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

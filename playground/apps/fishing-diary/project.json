@@ -1,0 +1,84 @@
+{
+  "name": "fishing-diary",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/fishing-diary/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/fishing-diary",
+        "index": "apps/fishing-diary/src/index.html",
+        "baseHref": "/",
+        "main": "apps/fishing-diary/src/main.tsx",
+        "polyfills": "apps/fishing-diary/src/polyfills.ts",
+        "tsConfig": "apps/fishing-diary/tsconfig.app.json",
+        "assets": [
+          "apps/fishing-diary/src/favicon.ico",
+          "apps/fishing-diary/src/assets"
+        ],
+        "styles": ["apps/fishing-diary/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/fishing-diary/src/environments/environment.ts",
+              "with": "apps/fishing-diary/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "fishing-diary:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "fishing-diary:build:development"
+        },
+        "production": {
+          "buildTarget": "fishing-diary:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/fishing-diary/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/fishing-diary"],
+      "options": {
+        "jestConfig": "apps/fishing-diary/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
