@@ -22,7 +22,8 @@
         ],
         "styles": ["apps/interval-timer/src/styles.scss"],
         "scripts": [],
-        "webpackConfig": "@nrwl/react/plugins/webpack"
+        "webpackConfig": "@nrwl/react/plugins/webpack",
+        "postcssConfig": "apps/interval-timer/postcss.config.js"
       },
       "configurations": {
         "development": {
