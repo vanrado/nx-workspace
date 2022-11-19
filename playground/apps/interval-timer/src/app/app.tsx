@@ -1,11 +1,12 @@
-import Counter from "./counter/Counter";
+import {Timer} from "./timer/Timer";
 
 export function App() {
   return (
     <>
       <div />
 
-      <Counter></Counter>
+      {/*<Counter></Counter>*/}
+      <Timer></Timer>
     </>
   );
 }
