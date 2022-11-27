@@ -7,7 +7,6 @@ const Counter = () => {
   const count = useAppSelector(state => state.counter.value);
   const dispatch = useAppDispatch();
   const [isPlaying, setIsPlaying] = useState(false);
-  const intervalSubscription = useRef<NodeJS.Timer | null>();
   const [intervalRef, setIntervalRef] = useState<NodeJS.Timer | null>();
   const onMinusClicked = () => {
     dispatch(decrement());
