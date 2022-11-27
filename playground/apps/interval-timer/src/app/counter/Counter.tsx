@@ -8,6 +8,7 @@ const Counter = () => {
   const dispatch = useAppDispatch();
   const [isPlaying, setIsPlaying] = useState(false);
   const intervalSubscription = useRef<NodeJS.Timer | null>();
+  const [intervalRef, setIntervalRef] = useState<NodeJS.Timer | null>();
   const onMinusClicked = () => {
     dispatch(decrement());
   };
@@ -16,15 +17,15 @@ const Counter = () => {
   }
   const onPlayClicked = () => {
     setIsPlaying(true);
-    intervalSubscription.current = setInterval(() => {
+    setIntervalRef(setInterval(() => {
       dispatch(increment());
-    }, 1000);
+    }, 1000));
   }
   const onStopClicked = () => {
     setIsPlaying(false);
-    if (intervalSubscription.current) {
-      clearInterval(intervalSubscription.current);
-      intervalSubscription.current = null;
+    if (intervalRef) {
+      clearInterval(intervalRef);
+      setIntervalRef(null);
     }
   }
   const onResetClicked = () => {
