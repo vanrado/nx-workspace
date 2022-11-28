@@ -1,9 +1,5 @@
 import Mutation from "./mutations";
 
-const users = [
-  {id: '1', email: 'rr'}, {id: '2', email: 'rr'}, {id: '3', email: 'rr'}
-];
-
 const typeDefs = `#graphql
 
 type Query {
@@ -28,7 +24,6 @@ input SignUpInput {
 
 const resolvers = {
   Query: {
-    users: () => users
   },
   Mutation
 };
