@@ -1,12 +1,9 @@
 import bcrypt from "bcrypt-nodejs";
 import mongoose from "mongoose";
 import {USER_SCHEMA_NAME} from "../config";
+import {User} from "../types/user";
 
 const Schema = mongoose.Schema;
-export interface User {
-  email: string,
-  password: string
-}
 
 export class UserSchema {
   static init(): void {

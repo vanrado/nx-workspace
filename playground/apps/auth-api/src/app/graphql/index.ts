@@ -1,19 +1,11 @@
-const users = [
-  { id: '1'}, { id: '2'}, { id: '3'}
-];
+import * as Users from "./users"
+
 const typeDefs = `#graphql
-type User {
-  id: String
-}
+  scalar JSON
+  scalar JSONObject
 
-type Query {
-  users: [User]
-}
+  ${Users.typeDefs}
 `;
-const resolvers = {
-  Query: {
-    users: () => users
-  }
-};
 
-export { typeDefs, resolvers }
+const resolvers = Users.resolvers;
+export { typeDefs, resolvers };

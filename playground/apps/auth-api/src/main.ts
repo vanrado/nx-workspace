@@ -23,11 +23,11 @@ const asyncInit = async () => {
   // Set up our Express middleware to handle CORS, body parsing,
   // and our expressMiddleware function.
   app.use(
-    '/',
+    '/graphql',
     // 50mb is the limit that `startStandaloneServer` uses, but you may configure this to suit your needs
     bodyParser.json({ limit: '50mb' }),
     expressMiddleware(apolloServer, {
-      context: async ({req}) => ({token: req.headers.token}),
+      context: async ({req}) => ({...req, token: req.headers.token}),
     }),
   );
   await new Promise<void>((resolve) => httpServer.listen({port}, resolve));

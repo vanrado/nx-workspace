@@ -3,7 +3,7 @@ import {Express} from "express";
 import LocalStrategy from "passport-local";
 import mongoose from "mongoose";
 import {USER_SCHEMA_NAME} from "../config";
-import {User} from "../models/user-schema";
+import {User} from "../types/user";
 
 export class AuthHelper {
   static userModel: mongoose.Model<User>;
@@ -63,7 +63,7 @@ export class AuthHelper {
   // Notice the Promise created in the second 'then' statement.  This is done
   // because Passport only supports callbacks, while GraphQL only supports promises
   // for async code!  Awkward!
-  static signup({email, password, req}): Promise<unknown> {
+  static signUp({email, password, request}): Promise<unknown> {
     const user = new this.userModel({email, password});
     if (!email || !password) {
       throw new Error('You must provide an email and password.');
@@ -78,7 +78,7 @@ export class AuthHelper {
       })
       .then(newUser => {
         return new Promise((resolve, reject) => {
-          req.logIn(newUser, (err) => {
+          request.logIn(newUser, (err) => {
             if (err) {
               reject(err);
             }
